@@ -4,7 +4,7 @@ import ChooseYourPath from "./ChooseYourPath";
 import SpeechComponent from "./SpeechToText/SpeechComponent.jsx";
 import HomePage from "./HomePage";
 import Matching from "./Tutorial_Components/Matching";
-import WebcamCapture from "./WebCapture.jsx";
+import WebcamCapture from "./WebCapture/WebCapture.jsx";
 import Alphabet from "./Buttons";
 import { images, imageSignLang } from "./Images";
 const App = () => {

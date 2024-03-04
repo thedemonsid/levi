@@ -1,48 +1,49 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "./assets/logo.png";
 import image0 from "./assets/image0.png";
-import logo1 from "./assets/logo1.png"
+import logo1 from "./assets/logo1.png";
 
 function Header() {
   const navigate = useNavigate();
-  function handleClick(){
-    navigate("/path")
+  function handleClick() {
+    navigate("/path");
   }
   return (
-    <header className="mb-10 fixed-header bg-white mt-0">
-      <nav className="flex justify-around align-middle mt-5 mb-3">
-        <div className="logo flex items-center justify-center">
-          <img src={logo} className="w-72 h-16 "></img>
+    <header className="mb-10 sticky top-0 backdrop-blur-lg text-basic-text bg-transparent mt-0 rounded-lg mx-auto max-w-screen shadow-2xl sm:text-xl">
+      <nav className="flex justify-around align-middle">
+        <div className="logo flex items-center justify-center text-2xl sm:text-4xl font-bold text-basic-text">
+         <h3 className="font-sans">ECHO🎯</h3>
         </div>
         <div className="get-started flex justify-center items-center">
-          <button onClick={handleClick} className="bg-green-700 hover:bg-green-900 text-white font-bold py-3 px-6 rounded-xl shadow-2xl text-xl transform hover:scale-105 transition-transform duration-200">
+          <button
+            onClick={handleClick}
+            className="bg-teal-500 hover:bg-gray-900 text-basic-text font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-xl border-solid shadow-2xl mt-3 mb-3 text-sm sm:text-xl transform hover:scale-95 transition-transform duration-200"
+          >
             Get Started
           </button>
         </div>
       </nav>
-      <hr></hr>
     </header>
   );
 }
+
 function Login() {
   const navigate = useNavigate();
-  function handleClick(){
-    navigate("/path")
+  function handleClick() {
+    navigate("/path");
   }
   return (
-    <div className="flex justify-around items-center mx-[25%] mt-[150px]">
-      <img
-        src={logo1}
-        alt="Description"
-        className="w-1/2"
-      />
-      <div className="w-1/2 text-right flex flex-col justify-between pb-10">
-        <h2 className="text-2xl font-bold mb-2 text-center">
+    <div className="flex flex-col sm:flex-row justify-around items-center mx-4 sm:mx-[25%] mt-10 sm:mt-[150px]">
+      <img src={logo1} alt="Description" className="w-full sm:w-1/2" />
+      <div className="w-full sm:w-1/2 text-center sm:text-right flex flex-col justify-between pb-10">
+        <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-center text-basic-text font-anta ">
           The free, fun, and effective way to learn a language!
-        </h2>
+        </h1>
         <div className="get-started flex justify-center items-center mt-4">
-          <button onClick={handleClick} className="bg-green-700 hover:bg-green-900 text-white font-bold py-3 px-6 rounded-xl shadow-2xl text-3xl transform hover:scale-105 transition-transform duration-200">
+          <button
+            onClick={handleClick}
+            className="bg-nav-bg hover:bg-gray-900 text-basic-text font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-xl shadow-2xl text-xl sm:text-3xl transform hover:scale-105 transition-transform duration-200"
+          >
             Get Started
           </button>
         </div>
@@ -57,18 +58,18 @@ function Feature({
   position = "right",
 }) {
   return (
-    <div className="flex justify-around items-center mt-10 mx-[25%] mb-10">
+    <div className="flex flex-col sm:flex-row justify-around items-center mt-10 mx-4 sm:mx-[25%] mb-10">
       {position === "left" ? (
-        <img src={img} alt="Description" className="w-1/2 animate-img" />
+        <img src={img} alt="Description" className="w-full sm:w-1/2 animate-img" />
       ) : null}
-      <div className="w-1/2 text-right flex flex-col justify-between pb-10 animate-text">
-        <h2 className="text-5xl font-bold mb-2 text-center text-green-700">
+      <div className="w-full sm:w-1/2 text-center sm:text-right flex flex-col justify-between pb-10 animate-text text-basic-text font-anta">
+        <h2 className="text-2xl sm:text-5xl font-bold mb-2 text-center sm:text-right">
           {heading}
         </h2>
-        <p className="text-lg text-center">{description}</p>
+        <p className="text-sm sm:text-lg text-center sm:text-right">{description}</p>
       </div>
       {position === "right" ? (
-        <img src={img} alt="Description" className="w-1/2 animate-img" />
+        <img src={img} alt="Description" className="w-full sm:w-1/2 animate-img" />
       ) : null}
     </div>
   );
@@ -96,41 +97,44 @@ const images = [
 
 const HomePage = () => {
   const navigate = useNavigate();
-  function handleClick(){
-    navigate("/path")
+  function handleClick() {
+    navigate("/path");
   }
   return (
-    <div>
+    <div className="bg-basic-bg">
       <Header></Header>
       <Login></Login>
-      <hr></hr>
-      <Feature
+      {/* <hr></hr> */}
+      <Feature 
         heading={headings[0]}
         description={descriptions[0]}
         img={images[0]}
-        position="right"
+        position="left"
       />
       <Feature
         heading={headings[1]}
         description={descriptions[1]}
         img={images[1]}
-        position="left"
+        position="right"
       />
       <Feature
         heading={headings[2]}
         description={descriptions[2]}
         img={images[2]}
-        position="right"
+        position="left"
       />
       <Feature
         heading={headings[3]}
         description={descriptions[3]}
         img={images[3]}
-        position="left"
+        position="right"
       />
-      <hr></hr>
+      {/* <hr></hr> */}
       <div className="get-started flex justify-center items-center mt-4">
-        <button onClick={handleClick}className="bg-green-700 hover:bg-green-900 text-white font-bold py-3 px-6 rounded-xl shadow-2xl text-3xl transform hover:scale-105 transition-transform duration-200 mb-20">
+        <button
+          onClick={handleClick}
+          className="bg-nav-bg hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-xl shadow-2xl text-3xl transform hover:scale-105 transition-transform duration-200 mb-20"
+        >
           Get Started
         </button>
       </div>
