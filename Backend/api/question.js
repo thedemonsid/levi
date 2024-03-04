@@ -23,10 +23,23 @@ function generateStyledNotes(transcript) {
 
 const corsHandler = cors();
 
-export default async (req, res) => {
+export default (req, res) => {
   // Handle CORS
-  await corsHandler(req, res);
+  return new Promise((resolve, reject) => {
+    corsHandler(req, res, (result) => {
+      if (result instanceof Error) {
+        reject(result);
+      } else {
+        resolve(result);
+      }
+    });
+  }).then(() => handleRequest(req, res)).catch((error) => {
+    console.error(error); // Log the error
+    res.status(500).json({ error: "Error processing question" });
+  });
+};
 
+async function handleRequest(req, res) {
   const { question } = req.body;
   if (!question) {
     return res.status(400).json({ error: "Question is required" });
@@ -48,4 +61,4 @@ export default async (req, res) => {
     console.error(error); // Log the error
     res.status(500).json({ error: "Error processing question" });
   }
-};
+}
