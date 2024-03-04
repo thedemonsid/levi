@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "engines": {
+    "node": "18.x"
+  },
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon speech.js"
+    "dev": "node index.js"
   },
   "keywords": [],
   "author": "",
