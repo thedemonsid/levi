@@ -1,6 +1,7 @@
 // api/question.js
 import "dotenv/config";
 import OpenAI from "openai";
+import cors from 'cors';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API,
@@ -20,7 +21,12 @@ function generateStyledNotes(transcript) {
   `;
 }
 
+const corsHandler = cors();
+
 export default async (req, res) => {
+  // Handle CORS
+  await corsHandler(req, res);
+
   const { question } = req.body;
   if (!question) {
     return res.status(400).json({ error: "Question is required" });
