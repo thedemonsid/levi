@@ -93,7 +93,7 @@ const SpeechComponent = () => {
             onClick={async () => {
               setIsLoading(true); // start loading
               const response = await fetch(
-                "http://localhost:5000/api/question",
+                "https://levi-three.vercel.app/api/question",
                 {
                   method: "POST",
                   headers: {
