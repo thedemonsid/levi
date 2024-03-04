@@ -59,12 +59,12 @@ const SpeechComponent = () => {
 
   // ...
   return (
-    <div className="flex h-screen bg-blue-50 m-5 border rounded-md ">
-      <div className="w-1/3 p-4 border-r bg-white shadow-lg overflow-auto max-h-screen">
+    <div className="flex flex-col md:flex-row h-screen bg-blue-50 m-5 border rounded-md ">
+      <div className="w-full md:w-1/3 p-4 border-r bg-white shadow-lg overflow-auto max-h-screen">
         <h2 className="text-3xl font-serif mb-4 text-blue-900">Transcript</h2>
         <p ref={outputRef} className="mt-4 text-lg text-gray-700"></p>
       </div>
-      <div className="w-1/3 p-4 border-r flex items-center justify-center bg-white shadow-lg">
+      <div className="w-full md:w-1/3 p-4 border-r flex items-center justify-center bg-white shadow-lg">
         <div className="flex flex-col items-center">
           <div className="mb-20">
             <KeyboardVoiceTwoToneIcon
@@ -116,7 +116,7 @@ const SpeechComponent = () => {
           </button>
         </div>
       </div>
-      <div className="w-1/3 p-4 bg-white shadow-lg overflow-auto max-h-screen">
+      <div className="w-full md:w-1/3 p-4 bg-white shadow-lg overflow-auto max-h-screen">
         <h2 className="text-3xl font-serif mb-4 text-blue-900">Notes</h2>
         <p
           ref={notesRef}
