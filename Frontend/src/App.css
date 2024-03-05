@@ -15,3 +15,7 @@
       0 0 40px #ff5722;
   }
 }
+video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}

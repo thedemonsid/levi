@@ -1,10 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
-
+import "../App.css";
+function speak(text) {
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(text);
+  synth.speak(utterance);
+}
 const CaptureImage = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const [text,setText] = useState("");
+  const [text, setText] = useState("");
   const startCamera = async () => {
     const constraints = { video: { facingMode: "user" } };
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -36,7 +41,8 @@ const CaptureImage = () => {
 
       if (response.headers["content-type"].includes("application/json")) {
         if (response.data.message) {
-          setText(text+response.data.message)
+          setText((prevText) => prevText + response.data.message);
+          s;
           console.log(response.data.message);
         } else {
           console.log("Received JSON response without message");
@@ -60,10 +66,18 @@ const CaptureImage = () => {
       }
     };
 
+    const handleBackspacePress = (event) => {
+      if (event.keyCode === 8) {
+        setText((prevText) => prevText.slice(0, -1));
+      }
+    };
+
     window.addEventListener("keydown", handleSpacebarPress);
+    window.addEventListener("keydown", handleBackspacePress);
 
     return () => {
       window.removeEventListener("keydown", handleSpacebarPress);
+      window.removeEventListener("keydown", handleBackspacePress);
     };
   }, []);
   useEffect(() => {
@@ -94,6 +108,9 @@ const CaptureImage = () => {
           className="text-4xl border-4 rounded-lg bg-[#00ADB5] inline-block mb-5"
         >
           Capture Image
+        </button>
+        <button className="text-4xl p-3 bg-slate-500 rounded-2xl mb-4 mt-0" onClick={() => speak(text || "Waiting for response...")}>
+          Speak
         </button>
       </div>
     </div>

@@ -119,6 +119,7 @@ export default function WebcamCapture() {
         ) : (
           <p className="text-xl text-green-700">Waiting for response...</p>
         )}
+       
       </div>
     </div>
   );
