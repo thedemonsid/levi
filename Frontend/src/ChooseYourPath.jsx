@@ -81,7 +81,7 @@ function Type({ emoji, heading, description,routing }) {
   return (
     <div 
       className={`flex flex-col align-middle items-center justify-around m-2 sm:m-5 rounded-3xl p-5 font-anta shadow-lg ${
-        isHovered ? "cursor-pointer bg-basic-text border-[-2px]" : ""
+        isHovered ? "cursor-pointer bg-nav-bg border-[-2px]" : ""
       }`}
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
