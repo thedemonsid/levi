@@ -4,6 +4,10 @@
 
 This project is a web application that uses a machine learning model to interpret sign language and has Speech-to-text functionality for deaf indivisualds communicate well.The web app also consists of tutorials quizess and more. The frontend is built with React and the backend is a Node.js server. The machine learning model is implemented in a Jupyter notebook.
 
+## Demo
+
+You can access the live demo of the project at [Demo Link](https://levi-frontend.vercel.app/)
+
 ## Installation
 
 ### Prerequisites
