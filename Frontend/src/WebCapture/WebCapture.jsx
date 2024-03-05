@@ -100,7 +100,7 @@ const CaptureImage = () => {
         </div>
       </div>
       <div className="w-1/2 flex flex-col h-screen items-center justify-around">
-        <div className="border border-black w-3/4 h-3/4 p-4 text-3xl font-semibold overflow-auto">
+        <div className="border-4 border-black w-3/4 h-3/4 p-4 text-3xl font-semibold overflow-auto rounded-xl">
           {text}
         </div>
         <button
