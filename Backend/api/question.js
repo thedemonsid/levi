@@ -1,7 +1,7 @@
 // api/question.js
 import "dotenv/config";
 import OpenAI from "openai";
-import cors from "cors";
+import cors from 'cors';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API,
@@ -14,8 +14,8 @@ function generateStyledNotes(transcript) {
       <div class="container mx-auto">
         <h1 class="text-3xl font-bold mb-4">Lecture Notes</h1>
         <p class="text-lg font-bold mb-2">Transcript:</p>
-        <ul class="list-disc mx-0">
-          ${lines.map((line) => <li>${line}</li>).join("")}
+        <ul class="list-disc ml-4">
+          ${lines.map((line) => `<li>${line}</li>`).join("")}
         </ul>
       </div>
   `;
@@ -33,12 +33,10 @@ export default (req, res) => {
         resolve(result);
       }
     });
-  })
-    .then(() => handleRequest(req, res))
-    .catch((error) => {
-      console.error(error); // Log the error
-      res.status(500).json({ error: "Error processing question" });
-    });
+  }).then(() => handleRequest(req, res)).catch((error) => {
+    console.error(error); // Log the error
+    res.status(500).json({ error: "Error processing question" });
+  });
 };
 
 async function handleRequest(req, res) {
