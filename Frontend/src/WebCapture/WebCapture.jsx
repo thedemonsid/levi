@@ -1,9 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import axios from "axios";
 
 const CaptureImage = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-
+  const [text,setText] = useState("");
   const startCamera = async () => {
     const constraints = { video: { facingMode: "user" } };
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -24,21 +25,31 @@ const CaptureImage = () => {
   };
 
   const sendImageToServer = async (imageData) => {
-    const response = await fetch("http://localhost:5000/images", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ image: imageData }),
-    });
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/images",
+        { image: imageData },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    if (response.headers.get("content-type").includes("application/json")) {
-      const data = await response.json();
-      console.log(data);
-    } else {
-      console.log("Received non-JSON response");
+      if (response.headers["content-type"].includes("application/json")) {
+        if (response.data.message) {
+          setText(text+response.data.message)
+          console.log(response.data.message);
+        } else {
+          console.log("Received JSON response without message");
+        }
+      } else {
+        console.log("Received non-JSON response");
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(`HTTP error! status: ${error.response.status}`);
+      } else {
+        console.error("Error: ", error.message);
+      }
     }
   };
 
@@ -55,12 +66,36 @@ const CaptureImage = () => {
       window.removeEventListener("keydown", handleSpacebarPress);
     };
   }, []);
+  useEffect(() => {
+    startCamera();
+  }, []);
 
   return (
-    <div>
-      <video ref={videoRef} autoPlay></video>
-      <canvas ref={canvasRef} width="640" height="480"></canvas>
-      <button onClick={startCamera}>Start Camera</button>
+    <div className="flex justify-between items-center h-screen m-5">
+      <div className=" flex flex-col items-around justify-around">
+        <div className="m-5 p-5 border-2 border-black rounded-lg">
+          <video ref={videoRef} autoPlay className="w-full"></video>
+        </div>
+        <div className="mx-5">
+          <canvas
+            ref={canvasRef}
+            width="320"
+            height="240"
+            className="w-1/2"
+          ></canvas>
+        </div>
+      </div>
+      <div className="w-1/2 flex flex-col h-screen items-center justify-around">
+        <div className="border border-black w-3/4 h-3/4 p-4 text-3xl font-semibold overflow-auto">
+          {text}
+        </div>
+        <button
+          onClick={captureImage}
+          className="text-4xl border-4 rounded-lg bg-[#00ADB5] inline-block mb-5"
+        >
+          Capture Image
+        </button>
+      </div>
     </div>
   );
 };
