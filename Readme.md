@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a web application that uses a machine learning model to interpret sign language. The frontend is built with React and the backend is a Node.js server. The machine learning model is implemented in a Jupyter notebook.
+This project is a web application that uses a machine learning model to interpret sign language and has Speech-to-text functionality for deaf indivisualds communicate well.The web app also consists of tutorials quizess and more. The frontend is built with React and the backend is a Node.js server. The machine learning model is implemented in a Jupyter notebook.
 
 ## Installation
 
