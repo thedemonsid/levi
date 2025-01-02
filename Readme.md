@@ -6,7 +6,7 @@ This project is a web application that uses a machine learning model to interpre
 
 ## Demo
 
-You can access the live demo of the project at [Demo Link](https://levi-frontend.vercel.app/)
+You can access the live demo of the project frontend at [Demo Link](https://levi-frontend.vercel.app/)
 
 ## Installation
 
